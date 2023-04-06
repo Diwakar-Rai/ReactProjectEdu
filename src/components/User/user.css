@@ -1,0 +1,62 @@
+/* .userBlur {
+  background: rgba(80, 227, 194, 0.25) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+} */
+
+/* .overflowY {
+  overflow-y: scroll !important; 
+  height: 500px !important;
+} */
+
+.overflowY::-webkit-scrollbar {
+  width: 8px;
+  background-color: #00000010;
+  border-radius: 10px;
+}
+
+.overflowY::-webkit-scrollbar-thumb {
+  background-color: #026f4b4e;
+  border-radius: 10px;
+}
+
+.tableParent table tbody tr td img {
+  height: 100px;
+  width: 100px;
+  border: none !important;
+  outline: none !important;
+}
+
+.tableParent table tbody tr td {
+  vertical-align: middle;
+}
+
+/* .glassDisplay {
+background: rgba( 123, 252, 223, 0.5 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 0px );
+-webkit-backdrop-filter: blur( 0px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+} */
+
+.indUserParent{
+    /* position: relative; */
+    /* top: 50px; */
+    /* animation: moveUp 1s ease forwards; */
+    
+}
+
+@keyframes moveUp {
+    from {
+        top: 50px;
+    }
+    to{
+        top: 0;
+    }
+}
+
+

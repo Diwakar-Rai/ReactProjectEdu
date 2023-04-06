@@ -1,17 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import AppContext from "components/ContextApi/AppContext";
+import BootcampContext from "components/ContextApi/BootcampContext";
+import CourseContext from "components/ContextApi/CourseContext";
+createRoot(document.getElementById("root")).render(
+  <AppContext>
+    <BootcampContext>
+      <CourseContext>
+        <App />
+      </CourseContext>
+    </BootcampContext>
+  </AppContext>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

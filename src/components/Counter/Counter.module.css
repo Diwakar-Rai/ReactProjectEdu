@@ -1,0 +1,35 @@
+.counter_section{
+    position: relative;
+    padding:6rem 0;
+    background-image: url('./../../images/bg_3.jpg')
+}
+.counter_container{
+    position: relative;
+    z-index: 3;
+}
+.counter_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.counter_icon{
+    font-size: 60px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    color: #ffff ;
+    /* var(--basecolor); */
+}
+.counter_number{
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 5px;
+    display: block;
+}
+.span{
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+}

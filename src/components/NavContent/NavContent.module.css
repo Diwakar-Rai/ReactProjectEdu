@@ -1,0 +1,73 @@
+.navContent{
+    height: 550px;
+}
+
+@keyframes slideInTop {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-30%);
+    }
+  }
+
+
+
+.cards{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width:80%;
+    animation: 1s ease-out 0s 1 slideInTop forwards;
+}
+
+.cards:hover{
+    transform: translateY(100px);
+    transition: all 0.9s ease;
+}
+
+.cards h2{
+
+  margin-bottom:10px;
+    font-size:16px;
+    color: white;
+}
+.cards h1{
+    font-weight: 700;
+    font-size:30px;
+    color: white;
+}
+
+.cards p{
+   
+    font-size:16px;
+    color: white;
+}
+.LinkBtn{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    border-radius: 50px;
+    width: 30%;
+}
+.LinkBtn a{
+    color: #1eb2a6;
+    background-color: aliceblue;
+    border-radius: 5px;
+    font-size:13px;
+    height:50px;
+    width: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 40px;
+}
+.LinkBtn a:hover{
+    transition: all 0.5s;
+    color:white;
+background-color: var(--basecolor);
+}
+

@@ -1,0 +1,64 @@
+.course_title{
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+.course_section{
+    padding:8rem 0;
+}
+.section{
+    padding-top:30px;
+    padding-bottom: 30px;
+}
+.subheading{
+
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    color: #1eb2a6;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.Courseh2{
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.mainContent{
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.pricingCol{
+    width:23%;
+}
+
+.pricingCol .excerpt{
+    margin-bottom: 0;
+    color: #111111;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+.number{
+    font-size: 50px;
+    font-weight: 600;
+    color: #1eb2a6;
+}
+.priceText{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+.pricingBtn{
+    width: 60%;
+    padding:1rem 0.5rem;
+    border-radius:5px;
+    margin: 0 auto;
+    border: 1px solid #1eb2a6 !important;
+    background: transparent !important;
+    color: #1eb2a6 !important;
+}

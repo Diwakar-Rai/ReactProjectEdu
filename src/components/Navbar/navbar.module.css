@@ -1,0 +1,129 @@
+.navBarContainer {
+  background: transparent;
+  padding: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.logo .logoIcon {
+  animation: rotate 5s linear infinite;
+}
+
+.topDiv a h1 {
+  color: white;
+  font-size: 30px;
+}
+.topDiv a span {
+  color: white;
+  font-size: 15px;
+}
+.socialIcons {
+  /* border: 1px solid red; */
+  gap: 10px;
+  flex-direction: row;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.socialIcons a {
+  background-color: #ffffff;
+  border-radius: 50%;
+  color: #1eb2a6;
+  border: 1px solid rgba(236, 237, 235, 0.687);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.icon {
+  font-size: 20px !important;
+}
+
+/* Main content */
+
+.collapse {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.navbar_light {
+  width: 100%;
+  background: transparent !important;
+  /* position: absolute; */
+
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0;
+}
+.nav_items {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.nav_link {
+  font-size: 15px;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.btn_custom {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.3);
+  background: #1eb2a6;
+  padding: 1.5rem;
+  color: #fff;
+  border-radius: 0;
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  z-index: 0;
+  text-align: center;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+}
+.divider {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+}
+.divider > div {
+  width: 0;
+  height: 0;
+  border-left: solid transparent 50px;
+  border-right: solid transparent 50px;
+  border-bottom: solid #1eb2a6 68px;
+  position: absolute;
+  left: -50px;
+}
+
+.socialIcons .loginName{
+    font-size: 16px !important;
+    color: white !important;
+}
+
+.logoutButton{
+    border-radius: 5px !important;
+    height: max-content !important;
+    width: max-content !important;
+    padding: 10px 20px;
+}

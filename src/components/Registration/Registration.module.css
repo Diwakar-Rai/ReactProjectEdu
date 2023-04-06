@@ -1,0 +1,143 @@
+.mainLoginDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 60px; */
+  /* border: 1px solid red; */
+  height: 100vh;
+  background-color: #ebeeef;
+}
+.form {
+  background-color: white;
+  width: 41.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(222, 219, 219);
+  box-shadow: 0px 0px 1px #ffff;
+  border-radius: 5px;
+}
+.form form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* gap: 40px; */
+}
+.inputContainer {
+  /* padding-top: 20px; */
+  margin-top: 10px;
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* gap: 20px; */
+  width: 500px;
+  padding: 10px;
+}
+.headDiv h1 {
+  font-family: Poppins-Regular, sans-serif;
+  font-weight: bolder;
+  /* color: rgb(30 178 166); */
+  color: white;
+  font-size: 30px;
+}
+
+.inputContainer input {
+  color: rgb(122, 115, 115);
+  /* color: rgb(30 178 166); */
+  font-size: 15px;
+  padding: 20px;
+  width: 400px;
+  height: 50px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(30 178 166);
+}
+.inputContainer input:focus {
+  border-color: rgb(30 178 166);
+  box-shadow: 1px 1px 1px rgb(30 178 166);
+}
+
+.inputContainer button {
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 400px;
+  height: 50px;
+  color: white;
+  background-color: rgb(30 178 166);
+  border: none;
+  border-radius: 5px;
+  /* font-weight: bold; */
+}
+
+.inputContainer button:hover {
+  transition: all 0.5s ease;
+  color: rgb(30 178 166);
+  background-color: white;
+  border: 1px solid rgb(30 178 166);
+}
+.headDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+      rgba(54, 84, 99, 0.3),
+      rgba(54, 84, 99, 0.2)
+    ),
+    url("./images/mikhail-fesenko-p6YWrjhmjhM-unsplash.jpg");
+  height: 150px;
+  width: 630px;
+  filter: grayscale(00%);
+  opacity: 1;
+  /* border: 1px solid red; */
+  border-radius: 5px 5px 0px 0px;
+}
+
+.forPass {
+  padding: 10px;
+  width: 400px;
+  height: 50px;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.forpass1 {
+  gap: 10px;
+  height: 50px;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+}
+.forpass1 {
+  color: rgb(194, 190, 190);
+}
+.forpass1 a {
+  color: rgb(30 178 166);
+}
+
+.link a {
+  color: rgb(194, 190, 190);
+  text-decoration: none;
+}
+
+.loginLink {
+  padding: 40px;
+  /* border: 1px solid red; */
+}
+.loginLink h1 {
+  font-weight: normal;
+  font-family: Poppins-Regular, sans-serif;
+  font-size: 14px;
+}
+.loginLink a {
+  font-weight: bold;
+  color: rgb(30 178 166);
+  font-size: 16px;
+}
