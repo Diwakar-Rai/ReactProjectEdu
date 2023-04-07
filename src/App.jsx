@@ -4,6 +4,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./global.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import AdminMain from "./components/admin/AdminMain";
@@ -47,10 +50,12 @@ const App = () => {
           {/* <UpdateBootcamp /> */}
           {/* <Courses/> */}
           {/* <CreateCourse/> */}
+          <ToastContainer/>
           <Routes>
-            <Route path="/home" element={<HomePage />} />
             <Route path="/" element={<Login />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/register" element={<Registration />}></Route>
+
             <Route path="/admin" element={<AdminMain />}>
               <Route index element={<BootcampAll />} />
               <Route path="bootcamp/:id" element={<BootcampIndividual />} />
@@ -59,8 +64,8 @@ const App = () => {
               <Route path="update/:id" element={<UpdateBootcamp />} />
               <Route path="addBootcamp" element={<CreateBootcamp />} />
               <Route path="createCourse/:id" element={<CreateCourse />} />
-              <Route path="individualCourse/:id" element={ <IndividualCourses/> } />
-              <Route path="updateCourse/:id" element={ <UpdateCourses/> } />
+              <Route path="individualCourse/:cid" element={ <IndividualCourses/> } />
+              <Route path="updateCourse/:cid" element={ <UpdateCourses/> } />
               
             </Route>
 
@@ -69,8 +74,8 @@ const App = () => {
             <Route path="/*" element={<PageNotFound />} />
             <Route path="/contact" element={<ConTact />} />
           </Routes>
-          <Footer/>
-          {state?.role?.me === "user" ?<Footer />:""}
+          {/* <Footer/> */}
+          {/* {state?.role?.me === "user" ?<Footer />:""} */}
         </Router>
       </div>
     </div>

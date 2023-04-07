@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "CustomAxios/utility";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const CreateBootcamp = () => {
+  let navigate = useNavigate();
+  let [photo, setPhoto] = useState("");
+
   let [bootcamp, setBootcamp] = useState({
     name: "",
     description: "",
@@ -10,9 +13,24 @@ const CreateBootcamp = () => {
     email: "",
     address: "",
   });
+  let careerArray = [
+    "web development",
+    "react development",
+    "fullstack development",
+    "java development",
+    "python development",
+    "android development",
+    "ux/ui development",
+    "business",
+    "others",
+  ];
 
   let [careers, setCareers] = useState([]);
   let { name, description, website, email, address } = bootcamp;
+
+  let handlePhoto = event => {
+    setPhoto(event.target.files[0]);
+  };
 
   // useEffect(() => {
   //   // let token = localStorage.getItem("token");
@@ -41,38 +59,67 @@ const CreateBootcamp = () => {
     setBootcamp({ ...bootcamp, [name]: value });
   };
   let handleSubmit = async e => {
-    console.log("Bootcamp added");
-    let token = localStorage.getItem("token");
-
     e.preventDefault();
+    console.log("Bootcamp added");
+    let token = getToken();
+    console.log("token", token);
     try {
       let payload = { name, description, website, email, address, careers };
-      await axios.post("http://localhost:5000/api/v1/bootcamps", payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // let finalPayload = { ...payload, photo };
+
+      let { data } = await axios.post(
+        `http://localhost:5000/api/v1/bootcamps/`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token.token}`,
+          },
+        }
+      );
+      console.log("data for pic", data);
+
+      if (data.success) {
+        let formData = new FormData();
+        formData.append("photo", photo);
+        await axios.put(
+          `http://localhost:5000/api/v1/bootcamps/${data.data._id}/photo`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token.token}`,
+            },
+          }
+        );
+        console.log("pic added ");
+      } else {
+        console.log("in pic else.....");
+      }
+
+      console.log(payload);
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     }
   };
-  let careerArray = [
-    "web development",
-    "react development",
-    "fullstack development",
-    "java development",
-    "python development",
-    "android development",
-    "ux/ui development",
-    "business",
-    "others",
-  ];
+
   return (
     <div>
       <div className="mx-4">
         <h2>Add Bootcamp here</h2>
       </div>
       <form onSubmit={handleSubmit} className=" border border-2 rounded-2 mx-4">
+        <div className=" ">
+          <label for="phots" className="form-label">
+            Photo:
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            aria-describedby="emailHelp"
+            name="photo"
+            onChange={handlePhoto}
+          />
+        </div>
         <div className=" ">
           <label for="exampleInputEmail1" className="form-label">
             Name:
@@ -170,7 +217,7 @@ const CreateBootcamp = () => {
         averageCost:
         <input type="number" /> */}
         <button className="btn btn-primary text-center w-50">
-          <Link to="/admin">Add Bootcamp</Link>
+          Add Bootcamp
         </button>
       </form>
     </div>

@@ -4,7 +4,7 @@ import Styles from "./NavContent.module.css"
 const NavContent = () => {
   return (
     <div className="container">
-    <div className={`${Styles.navContent} dflex`} style={{paddingLeft: 20}}>
+      <div className={`${Styles.navContent} dflex`} style={{ paddingLeft: 25 }}>
       <div className={Styles.cards}>
         <h2>WELCOME TO LEARNTIMES</h2>
         <h1>Best Online Education</h1>

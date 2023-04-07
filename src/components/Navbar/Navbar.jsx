@@ -13,21 +13,16 @@ import { loginContext } from "components/ContextApi/AppContext";
 import { getAxios } from "CustomAxios/AxiosUtility";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
-  let { state, updateUserData } = useContext(loginContext);
-  // let navigate = useNavigate()
-  let [admin, setAdmin] = useState(true);
-  // console.log(state.me.role)
+  let { state, updateUserData, getUserData } = useContext(loginContext);
 
-  // if (state.me.role === "admin") {
-  //   setAdmin(true)
-  // }
+  let [admin, setAdmin] = useState(true);
 
   useEffect(() => {
-    if (state.me.role === "user") {
-      setAdmin(false)
-    } else {
-      setAdmin(true)
-    }
+    // if (state.me.role === "user") {
+    //   setAdmin(false)
+    // } else {
+    //   setAdmin(true)
+    // }
     let fetchData = async () => {
       try {
         let res = getToken();
@@ -37,7 +32,15 @@ const Navbar = () => {
           "http://localhost:5000/api/v1/auth/me/",
           header
         );
-        updateUserData(data);
+        // updateUserData(data);
+
+        console.log(data);
+
+        if (data.role == "admin") {
+          setAdmin(true);
+        } else {
+          setAdmin(false);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -47,14 +50,16 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="container" style={{
-        padding:0
-      }}>
+      <div
+        className="container"
+        style={{
+          paddingLeft: 45,
+        }}
+      >
         <div className={`${Styles.navBarContainer} row`}>
           <div className={`col-lg-6 ${Styles.topDiv}`}>
             <Link>
               <h1 className={Styles.logo}>
-              
                 <SiSololearn className={`${Styles.logoIcon}`} />
                 LearnTimes
               </h1>
@@ -92,7 +97,7 @@ const Navbar = () => {
         </div>
         <div className="row navbarrow">
           <div className={`navbar navbar-expand-lg  ${Styles.navbar_light}`}>
-            <div className={`container navBg`}>
+            <div className={`container navBg`} style={{padding: 0}}>
               <div className={`${Styles.collapse}`} id="navbarSupportedContent">
                 <ul className={`${Styles.nav_items}`}>
                   <li className={`${Styles.nav_item}`}>
@@ -136,7 +141,7 @@ const Navbar = () => {
                         className={`${Styles.nav_link}`}
                         to="/admin"
                         style={{
-                          color:"red"
+                          color: "red",
                         }}
                       >
                         Dashboard

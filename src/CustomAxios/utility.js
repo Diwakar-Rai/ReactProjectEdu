@@ -35,3 +35,9 @@ export const deleteToken = () => {
 export const getUserRole = data => {
   return data.role;
 };
+
+export const getCourseById = (courses, courseId) => {
+  return courses.find((course, index) => {
+    return course._id == courseId;
+  });
+};

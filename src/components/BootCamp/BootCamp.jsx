@@ -14,32 +14,15 @@ const BootCamp = () => {
       setBootcamp(data.data)
       console.log(bootcamp)
     };
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
 
     fetchData();
   }, []);
-  // let bootCampData = [
-  //   {
-  //     icon: "s",
-  //     heading: "Introducing to Programming with WordPress",
-  //     rating: [<MdStarRate />, <MdStarRate />, <AiOutlineStar />],
-  //     totalCourse: "34",
-  //     price: "24",
-  //   },
-  //   {
-  //     icon: "s",
-  //     heading: "Basic Fundamentals for Software Engineering",
-  //     rating: [1, 2, 3, 4, 5],
-  //     totalCourse: "20",
-  //     price: "234",
-  //   },
-  //   {
-  //     icon: "s",
-  //     heading: "HTML, CSS, and Javascript for Web Developers",
-  //     rating: [1, 2, 3, 4, 5],
-  //     totalCourse: "18",
-  //     price: "32",
-  //   },
-  // ];
+
   return (
     <>
       

@@ -18,11 +18,14 @@ const AppContext = ({ children }) => {
   };
 
   let updateUserData = userData => {
+    console.log("user data.....");
+
     setState({ ...state, me: userData });
+    console.log(state);
   };
 
   useEffect(() => {
-      let tokenObject = getToken();
+    let tokenObject = getToken();
     if (tokenObject.status) {
       console.log("setting token");
       setToken(tokenObject.token);

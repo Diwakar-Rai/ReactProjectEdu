@@ -6,7 +6,8 @@ import { createHeaders } from "CustomAxios/utility";
 import { getToken } from "CustomAxios/utility";
 const BootcampAccordian = () => {
   let { id } = useParams();
-  // let navigate = useNavigate();
+  console.log(id);
+  let navigate = useNavigate();
   let { boot, updateBootcampData, getBootCampData } =
     useContext(BootCampGlobal);
 
@@ -17,10 +18,11 @@ const BootcampAccordian = () => {
     let fetchData = async () => {
       let { data } = await getBootCampData();
       setBootData(data);
-      console.log(data);
+      console.log("bootData--->", data);
     };
     fetchData();
   }, []);
+
 
   let handleDelete = async id => {
     let token = getToken();
@@ -29,7 +31,18 @@ const BootcampAccordian = () => {
         Authorization: `Bearer ${token.token}`,
       },
     });
-    window.location.assign("/admin")
+    // window.location.assign("/admin");
+    navigate(0)
+  };
+  let handleDeleteCourse = async id => {
+    let token = getToken();
+    await axios.delete(`http://localhost:5000/api/v1/courses/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+      },
+    });
+    // window.location.assign("/admin");
+    navigate("/admin")
   };
 
   // let deleteBoot = async (id) => {
@@ -87,9 +100,10 @@ const BootcampAccordian = () => {
       </button> */}
       <div className="accordion" id="accordionExample mb-5">
         {bootData && bootData.length < 0
-          ? "loading..."
+          ? "loading......"
           : bootData?.map((ele, index) => {
               let { name, courses, id } = ele;
+              console.log("map bootcamp cours", courses);
               return (
                 <React.Fragment key={index}>
                   <div className="accordion-item">
@@ -154,15 +168,17 @@ const BootcampAccordian = () => {
                           </thead>
                           <tbody>
                             {courses.length > 0 &&
-                              courses.map((ele, index) => {
-                                let { title, duration, price } = ele;
+                              courses?.map((cdata, index) => {
+                                console.log(cdata.id);
                                 return (
                                   <React.Fragment key={index}>
                                     <tr>
                                       <td>{index + 1}</td>
-                                      <td>{title}</td>
-                                      <td>{duration}</td>
-                                      <td>{price}</td>
+                                      <td>{cdata.title}</td>
+                                      <td>{cdata.duration}</td>
+                                      <td>
+                                        {cdata.price} 
+                                      </td>
                                       <td>
                                         <div
                                           className="btn-group"
@@ -174,7 +190,7 @@ const BootcampAccordian = () => {
                                             className="btn btn-primary btn-sm m-0"
                                           >
                                             <Link
-                                              to={`/admin/individualCourse/${id}`}
+                                              to={`/admin/individualCourse/${cdata._id}`}
                                             >
                                               View
                                             </Link>
@@ -184,7 +200,7 @@ const BootcampAccordian = () => {
                                             className="btn btn-primary btn-sm m-0"
                                           >
                                             <Link
-                                              to={`/admin/updateCourse/${id}`}
+                                              to={`/admin/updateCourse/${cdata._id}`}
                                             >
                                               Update
                                             </Link>
@@ -192,6 +208,7 @@ const BootcampAccordian = () => {
                                           <button
                                             type="button"
                                             className="btn btn-danger btn-sm m-0"
+                                            onClick={() => { handleDeleteCourse(cdata._id) }}
                                           >
                                             Delete
                                           </button>

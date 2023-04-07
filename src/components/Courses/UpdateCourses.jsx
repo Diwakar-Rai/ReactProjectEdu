@@ -1,35 +1,68 @@
+import { getCourseById, getToken } from "CustomAxios/utility";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateCourses = () => {
-    let {id} = useParams()
-  let [courses, setCourses] = useState({
+  let { cid } = useParams();
+  console.log(cid);
+  let navigate = useNavigate()
+  let [course, setCourse] = useState({
     title: "",
     description: "",
     duration: "",
     price: "",
     minimumSkill: "",
   });
-    
-   
 
-  let { title, description, duration, price, minimumSkill } = courses;
+  useEffect(() => {
+    let fetchData = async () => {
+      let token = getToken();
+      let { data } = await axios.get(`http://localhost:5000/api/v1/courses`, {
+        headers: {
+          Authorization: `Bearer ${token.token}`,
+        },
+      });
+      console.log("single course data", data.data);
+
+      let course = getCourseById(data.data, cid);
+      setCourse(course);
+      console.log("individual course in individual in update", course);
+    };
+    fetchData();
+  }, [cid]);
+
+  let { title, description, duration, price, minimumSkill } = course;
 
   let handleChange = e => {
     let { name, value } = e.target;
-    setCourses({ ...courses, [name]: value });
+    setCourse({ ...course, [name]: value });
   };
 
-  let handleSubmit = e => {
+  let handleSubmit = async e => {
     e.preventDefault();
     try {
       let payload = { title, description, duration, price, minimumSkill };
       console.log(payload);
+
+        
+          let token = getToken();
+          let { data } = await axios.put(
+            `http://localhost:5000/api/v1/courses/${cid}`,payload,
+            {
+              headers: {
+                Authorization: `Bearer ${token.token}`,
+              },
+              
+            }
+          );
+         navigate("/admin")
+         console.log("updated the coutsejkkjk")
     } catch (error) {
       console.log(error);
     }
 
-    setCourses({
+    setCourse({
       title: "",
       description: "",
       duration: "",
@@ -56,7 +89,7 @@ const UpdateCourses = () => {
         <input type="radio" />
       </form> */}
       <div className="mx-4">
-        <h1>Add Course Here</h1>
+        <h1>Update Course Here</h1>
       </div>
       <form className="border border-2 rounded-2 mx-4" onSubmit={handleSubmit}>
         <div className=" ">

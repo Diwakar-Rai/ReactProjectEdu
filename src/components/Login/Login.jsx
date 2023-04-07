@@ -6,11 +6,13 @@ import AxiosRequest from "CustomAxios/AxiosRequest";
 import {
   createHeaders,
   createRequestObject,
+  getToken,
   getUserRole,
   setToken,
 } from "CustomAxios/utility";
 import axios from "axios";
 import { loginContext } from "components/ContextApi/AppContext";
+import { getAxios } from "CustomAxios/AxiosUtility";
 
 const Login = () => {
   let { updateUserData, getUserData, state } = useContext(loginContext);
@@ -19,10 +21,33 @@ const Login = () => {
 
   let [loginState, setLoginState] = useState({ email: "", password: "" });
   let { email, password } = loginState;
+  let [adminDashborad, setAdminDashborad] = useState(false);
 
   let handleChange = e => {
     let { name, value } = e.target;
     setLoginState({ ...loginState, [name]: value });
+  };
+
+  let fetchMe = async () => {
+    try {
+      let res = getToken();
+      let header = createHeaders(res.token);
+
+      let { data } = await getAxios(
+        "http://localhost:5000/api/v1/auth/me/",
+        header
+      );
+      console.log("from login/home page updated data result", data.role);
+      if (data.role == "admin") {
+        setAdminDashborad(true);
+        navigate("/admin");
+      } else {
+        // setAdminDashborad(false);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   let handleSubmit = async e => {
@@ -30,9 +55,10 @@ const Login = () => {
     try {
       let payload = { email, password };
       let { data } = await axios.post(`${auth}/login`, payload);
-      setToken(data.token);
-      navigate("/home");
-
+      if (data) {
+        setToken(data.token);
+        fetchMe();
+      }
       setLoginState({ email: "", password: "" });
     } catch (error) {
       console.log(error);

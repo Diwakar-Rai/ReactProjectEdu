@@ -5,7 +5,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export let BootCampGlobal = createContext();
 const BootcampContext = ({ children }) => {
-  let initialBootCampState = {bootcamp: "" };
+  let initialBootCampState = { bootcamp: "" };
   let [boot, setBoot] = useState(initialBootCampState);
 
   let getBootCampData = async token => {
@@ -16,7 +16,8 @@ const BootcampContext = ({ children }) => {
         header,
       }
     );
-    console.log("bootData", bootcampData.data);
+    console.log("alll bootData", bootcampData.data);
+
     return bootcampData;
   };
 
@@ -24,26 +25,34 @@ const BootcampContext = ({ children }) => {
     setBoot({ ...boot, bootcamp: bootcampData });
   };
 
-    useEffect(() => {
-      // let tokenObject = getToken();
-      // if (tokenObject.status) {
-      //   console.log("setting token");
-      //   setToken(tokenObject.token);
-      //   setBoot({
-      //     ...boot,
-      //     token: tokenObject.token,
-      //   });
-      // }
-        let boData = getBootCampData()
-        setBoot({
-            ...boot,
-           bootcamp : boData
-        })
-    }, []);
+  useEffect(() => {
+    // let tokenObject = getToken();
+    // if (tokenObject.status) {
+    //   console.log("setting token");
+    //   setToken(tokenObject.token);
+    //   setBoot({
+    //     ...boot,
+    //     token: tokenObject.token,
+    //   });
+    // }
+    let fetchBootcamp = async () => {
+       let boData = await getBootCampData();
+       setBoot({
+         ...boot,
+         bootcamp: boData,
+       });
+      console.log("boData", boData);
+    }
+    fetchBootcamp()
+   
+
+  }, []);
 
   return (
     <div>
-      <BootCampGlobal.Provider value={{ boot, updateBootcampData, getBootCampData }}>
+      <BootCampGlobal.Provider
+        value={{ boot, updateBootcampData, getBootCampData }}
+      >
         {children}
       </BootCampGlobal.Provider>
     </div>
